@@ -1,25 +1,24 @@
-import './filters.css'
-
 import { useId } from 'react'
 import { useFilter } from '../hooks/useFilters'
+import './filters.css'
 
 export const Filters = () => {
   const { filters, setFilters } = useFilter()
 
-  const minPriceFilterId = useId()
-  const categoryFilterId = useId()
+  const priceId = useId()
+  const categoryId = useId()
 
-  const handleChangeMinPrice = (e) => {
+  const handleChangeMinPrice = (event) => {
     setFilters(prevState => ({
       ...prevState,
-      minPrice: e.target.value
+      minPrice: event.target.value
     }))
   }
 
-  const handleChangeCategory = (e) => {
+  const handleChangeCategory = (event) => {
     setFilters(prevState => ({
       ...prevState,
-      category: e.target.value
+      category: event.target.value
     }))
   }
 
@@ -27,23 +26,16 @@ export const Filters = () => {
     <section className='filters'>
 
       <div>
-        <label htmlFor={minPriceFilterId}>Filtrar por precio:</label>
-        <input
-          type='range'
-          id={minPriceFilterId}
-          min='0'
-          max='2000'
-          onChange={handleChangeMinPrice}
-          value={filters.minPrice}
-        />
+        <label htmlFor={priceId}>Precio a partir de :</label>
+        <input type='range' id={priceId} onChange={handleChangeMinPrice} value={filters.minPrice} min='0' max='2000' />
         <span>{filters.minPrice}</span>
       </div>
 
       <div>
-        <label htmlFor={categoryFilterId}>Categoria</label>
-        <select id={categoryFilterId} onChange={handleChangeCategory}>
+        <label htmlFor={categoryId}>Categoria</label>
+        <select id={categoryId} onChange={handleChangeCategory}>
           <option value='all'>All</option>
-          <option value='home-decoration'>Home-decoration</option>
+          <option value='home-decoration'>Home Decoration</option>
           <option value='laptops'>Laptops</option>
           <option value='smartphones'>Smartphones</option>
           <option value='fragrances'>Fragrances</option>
@@ -51,6 +43,7 @@ export const Filters = () => {
           <option value='groceries'>Groceries</option>
         </select>
       </div>
+
     </section>
   )
 }

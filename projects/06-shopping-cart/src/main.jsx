@@ -1,13 +1,13 @@
 import './index.css'
 
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-
+import { createRoot } from 'react-dom/client'
+import { App } from './App'
 import { FiltersProvider } from './context/filters'
-import App from './App'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('app')).render(
+
   <FiltersProvider>
     <App />
   </FiltersProvider>
+
 )
