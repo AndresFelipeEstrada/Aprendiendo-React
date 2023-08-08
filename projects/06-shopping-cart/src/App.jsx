@@ -1,24 +1,25 @@
-import { products as InitialProducts } from './mocks/products.json'
-import { Header } from './components/Header'
-import { Products } from './components/Products'
-import { Footer } from './components/Footer'
-import { Cart } from './components/Cart'
-import { useFilter } from './hooks/useFilters'
-import { CartProvider } from './context/cartContext'
+import { products as initialProducts } from './mocks/products.json'
 
-export const App = () => {
-  const { filterProducts } = useFilter()
+import { Products } from './components/products/Products'
+import { Header } from './components/header/Header'
+import { useFilters } from './hooks/useFilters'
+import { Footer } from './components/footer/Footer'
+import { CartProvider } from './context/cart'
+import { Cart } from './components/cart/cart'
 
-  const filteredProducts = filterProducts(InitialProducts)
+export function App () {
+  const { filterProducts } = useFilters()
+
+  const filteredProducts = filterProducts(initialProducts)
 
   return (
-
-    <CartProvider>
-      <Header />
-      <Cart />
-      <Products products={filteredProducts} />
-      <Footer />
-    </CartProvider>
-
+    <>
+      <CartProvider>
+        <Header />
+        <Cart />
+        <Products products={filteredProducts} />
+        <Footer />
+      </CartProvider>
+    </>
   )
 }

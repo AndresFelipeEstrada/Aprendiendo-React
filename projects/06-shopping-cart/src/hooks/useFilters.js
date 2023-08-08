@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { FiltersContext } from '../context/filters'
 
-export const useFilter = () => {
+export const useFilters = () => {
   const { filters, setFilters } = useContext(FiltersContext)
 
   const filterProducts = (products) => {
